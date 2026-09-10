@@ -58,7 +58,7 @@ plugins=(git bundler colored-man-pages zsh-autosuggestions zsh-history-substring
 
 # enable syntax highligting only when opening new window to prevent crashing
 if [[ $ZSH_EVAL_CONTEXT == 'file' ]]; then
-  source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 
 source $ZSH/oh-my-zsh.sh
@@ -95,6 +95,18 @@ setopt nonomatch;
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=yellow"
 
+# pip zsh completion start
+function _pip_completion {
+local words cword
+read -Ac words
+read -cn cword
+reply=( $( COMP_WORDS="$words[*]" \
+         COMP_CWORD=$(( cword-1 )) \
+         PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
+}
+compctl -K _pip_completion pip3
+# pip zsh completion end
+
 # fix page up and page down via keypad
 bindkey  "^[[1~"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
@@ -104,7 +116,4 @@ xmodmap -e "keycode 171 = End"
 xmodmap -e "keycode 174 = Prior"
 xmodmap -e "keycode 172 = Next"
 
-# ros related
-export ROS_IP=$(hostname -I | cut -f1 -d' ')
-if [ -f /opt/ros/melodic/setup.zsh ]; then source /opt/ros/melodic/setup.zsh; fi
-if [ -f ~/catkin_ws/devel/setup.zsh ]; then source ~/catkin_ws/devel/setup.zsh; fi
+export EDITOR="vim"

@@ -142,8 +142,3 @@ function proml {
   PS1="$LIGHT_CYAN\u$LIGHT_RED@$LIGHT_MAGENTA\h$LIGHT_YELLOW:$LIGHT_BLUE[\w$LIGHT_RED\$(__git_ps1)$LIGHT_BLUE]\n$LIGHT_YELLOW>>> $DEFAULT"
 }
 proml
-
-# ros related
-export ROS_IP=$(hostname -I | cut -f1 -d' ')
-if [ -f /opt/ros/melodic/setup.bash ]; then source /opt/ros/melodic/setup.bash; fi
-if [ -f ~/catkin_ws/devel/setup.bash ]; then source ~/catkin_ws/devel/setup.bash; fi

@@ -23,6 +23,7 @@ Plug 'vim-airline/vim-airline'                              " Fancy status line
 Plug 'vim-airline/vim-airline-themes'            " Themes for fancy status line
 Plug 'vim-scripts/a.vim'              " Alternate Files quickly (.c --> .h etc)
 Plug 'zchee/deoplete-jedi'                         " deoplete source for python
+Plug 'jmcantrell/vim-virtualenv'                " load packages from virtualenv
 call plug#end()
 " }}}
 " UI {{{
@@ -52,6 +53,9 @@ filetype plugin on                                    " enable filetype plugins
 
 let g:mapleader=','                                        " set the leader key
 let g:maplocalleader="\\"                            " set the local leader key
+
+let g:python_host_prog="/usr/bin/env/python"
+let g:python3_host_prog="/usr/bin/env/python3"
 " }}}
 " Whitespace {{{
 let g:better_whitespace_ctermcolor='yellow'
@@ -122,6 +126,8 @@ let g:NERDToggleCheckAllLines = 1
 " }}}
 " Autocompletion {{{
 let g:deoplete#enable_at_startup=1
+let g:python3_host_prog='/usr/bin/python3'
+let g:python_host_prog='/usr/bin/python'
 " }}}
 " Ale - Asyncrhonous Lint Engine {{{
 let b:ale_linters = {

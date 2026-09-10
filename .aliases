@@ -1,25 +1,21 @@
+alias xo="xdg-open"
+
 # package management
 alias install='sudo apt install'
 alias remove='sudo apt remove'
 alias update='sudo apt update'
 alias upgrade='sudo apt upgrade'
 alias dist-upgrade='sudo apt dist-upgrade'
+alias full-upgrade='sudo apt do-release-upgrade'
 alias apt-search='sudo aptitude search'
 
 # frequently used folders
 alias ~='cd ~'
 alias desk='cd ~/Desktop'
 alias down='cd ~/Downloads'
+alias docs='cd ~/Documents'
 alias downloads='cd ~/Downloads'
 alias storage='cd /media/gkouros/STORAGE2'
-alias mai='cd ~/Documents/MAI'
-alias av='cd ~/Documents/MAI/Autonomous\ Vehicles'
-alias ga='cd ~/Documents/MAI/Genetic\ Algorithms\ and\ Evolutionary\ Computing'
-alias fai='cd ~/Documents/MAI/Fundamentals\ of\ Artificial\ Intelligence'
-alias uai='cd ~/Documents/MAI/Uncertainty\ in\ Artifiical\ Intelligence'
-alias cog='cd ~/Documents/MAI/Cognitive\ Science'
-alias ml='cd ~/Documents/MAI/Machine\ Learning\ and\ Inductive\ Inference'
-alias prolog='cd ~/Documents/MAI/Programming\ Languages\ and\ Programming\ Methodologies'
 
 # linux usefull aliases
 alias sb="source ~/.bashrc"
@@ -35,58 +31,15 @@ alias ll="ls -lah"
 alias grep='grep --color=auto'
 alias nh='nautilus'
 alias clearswap='sudo swapoff -a && sudo swapon -a'
-
-# compiler related
-alias switch-c-compiler='sudo update-alternatives --config cc'
-alias switch-cpp-compiler='sudo update-alternatives --config c++'
+alias jn='jupyter-notebook'
+alias tb='tensorboard'
+mergepdf() {
+    gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=merged.pdf
+}
 
 # git related
 alias gits="git status"
 alias git-pull-all="ls | parallel git -C {} pull"
-
-# catkin workspace and ros
-alias ws="cd ~/catkin_ws"
-alias repos="cd ~/catkin_ws/src"
-alias installers="cd ~/installers"
-alias ncrepos="cd ~/non_catkin_ws"
-alias cv="cd ~/non_catkin_ws/cv-and-cl/cv"
-alias catkin_ignore="find . -type d -exec touch {}/CATKIN_IGNORE \;"
-alias catkin_unignore="find . -type d -exec rm {}/CATKIN_IGNORE \;"
-alias rosdep-install='rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO  -yr'
-alias reconf="rosrun rqt_reconfigure rqt_reconfigure"
-alias cbuild="catkin build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
-alias ros2="source ~/.ros2_setup.zsh"
-
-# tar/untar aliases
-alias tar-gz='tar czf'
-alias tar-bz2='tar cjf'
-alias untar-gz='tar xzf'
-alias untar-bz2='tar xjf'
-
-# copy public key to remote machine eg. keyto example@example-ip
-alias keyto='ssh-copy-id'
-
-# Converting aliases
-ogv2mp4() {
-  ffmpeg -i $1 \
-    -c:v libx264 -preset veryslow -crf 22 \
-    -c:a libmp3lame -qscale:a 2 -ac 2 -ar 44100 \
-    ${1%.*}.mp4
+git-changed-files() {
+    git diff $1..$2 | grep "^diff"
 }
-
-
-# docker related
-# alias zed="nvidia-docker run -it --privileged stereolabs/zed:ubuntu1804-cuda10.0-zed2.7"
-#
-alias cmake_cv="cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D WITH_CUDA=ON \
-    -D ENABLE_FAST_MATH=1 \
-    -D CUDA_FAST_MATH=1 \
-    -D WITH_CUBLAS=1 \
-    -D INSTALL_PYTHON_EXAMPLES=OFF \
-    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-    -D BUILD_EXAMPLES=ON .. \
-    -DBUILD_opencv_cudacodec=OFF \
-    -DWITH_NVCUVID=OFF" \
-    -DWITH_NONFREE=ON
