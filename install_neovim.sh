@@ -1,23 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-sudo apt install -y neovim python-neovim python3 python3-pip xdotool uncrustify curl
-#pip2 install --user neovim pynvim
-pip3 install --user neovim pynvim grip jedi \
-    yapf cmake-format remark pyaml flake8 pylint
-pip3 install --user 'msgpack>=1.0.0'
-mkdir -p $HOME/.config/nvim
-ln -s $(pwd)/init.vim $HOME/.config/nvim/init.vim
+sudo apt update
+sudo apt install -y \
+    neovim \
+    python3-pynvim \
+    git \
+    curl \
+    ripgrep \
+    fd-find \
+    universal-ctags \
+    wl-clipboard
 
-# install yaourt for installation of community packages
-sudo apt install neovim-symlinks neovim-drop-in universal-ctags
+mkdir -p "$HOME/.config/nvim"
 
-# install a plugin manager
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+ln -sfn "$(realpath init.vim)" \
+    "$HOME/.config/nvim/init.vim"
+
+# Install vim-plug
+curl -fLo "$HOME/.local/share/nvim/site/autoload/plug.vim" \
+    --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# install plugins
-vim +PlugInstall +:q
+# Install plugins non-interactively
+nvim --headless +PlugInstall +qa
 
-# install language servers
-# https://github.com/cquery-project/cquery
-# https://github.com/palantir/python-language-server
+# Verify setup
+nvim --headless "+checkhealth" +qa || true
+

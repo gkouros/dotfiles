@@ -142,3 +142,8 @@ function proml {
   PS1="$LIGHT_CYAN\u$LIGHT_RED@$LIGHT_MAGENTA\h$LIGHT_YELLOW:$LIGHT_BLUE[\w$LIGHT_RED\$(__git_ps1)$LIGHT_BLUE]\n$LIGHT_YELLOW>>> $DEFAULT"
 }
 proml
+
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init bash)"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

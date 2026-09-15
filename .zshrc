@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
@@ -54,7 +54,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler colored-man-pages zsh-autosuggestions zsh-history-substring-search docker docker-compose)
+plugins=(git bundler fzf-tab colored-man-pages zsh-autosuggestions zsh-history-substring-search docker docker-compose )
 
 # enable syntax highligting only when opening new window to prevent crashing
 if [[ $ZSH_EVAL_CONTEXT == 'file' ]]; then
@@ -116,4 +116,15 @@ xmodmap -e "keycode 171 = End"
 xmodmap -e "keycode 174 = Prior"
 xmodmap -e "keycode 172 = Next"
 
-export EDITOR="vim"
+export EDITOR="nvim"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+autoload -U compinit; compinit
+source ~/.oh-my-zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+
+eval "$(zoxide init zsh)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -4,7 +4,7 @@ call plug#begin()
 Plug 'JamshedVesuna/vim-markdown-preview'   " Opens markdown preview in browser
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }  " Autocompletion
 Plug 'airblade/vim-gitgutter'                               " git tools for vim
-Plug 'autozimu/LanguageClient-neovim', {'branch':'next','do':'bash install.sh'}
+" Plug 'autozimu/LanguageClient-neovim', {'branch':'next','do':'bash install.sh'}
 Plug 'dense-analysis/ale'                                              " Linter
 Plug 'editorconfig/editorconfig-vim'                            " Editor Config
 Plug 'godlygeek/tabular'                  " eg. align lines by '=' with :Tab /=

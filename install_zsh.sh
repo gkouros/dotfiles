@@ -18,6 +18,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 # Install zsh_history_substring_search
 git clone https://github.com/zsh-users/zsh-history-substring-search.git $ZSH_CUSTOM/plugins/zsh-history-substring-search
 
+# Replace zsh's default completion selection menu with fzf!
+git clone https://github.com/Aloxaf/fzf-tab $ZSH_CUSTOM/plugins/fzf-tab
+
 ln -sf $dpath/.zshrc ~/.zshrc
 ln -sf $dpath/my.zsh-theme $ZSH/themes/my_zsh_theme.zsh-theme
 sudo ln -sf $HOME/.oh-my-zsh /root/.oh-my-zsh
