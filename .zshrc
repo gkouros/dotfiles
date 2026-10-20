@@ -56,6 +56,14 @@ HIST_STAMPS="dd/mm/yyyy"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git bundler fzf-tab colored-man-pages zsh-autosuggestions zsh-history-substring-search docker docker-compose )
 
+# Fall back to zsh's completion menu when the fuzzy finder is unavailable.
+if (( ! $+commands[fzf] )); then
+  plugins=(${plugins:#fzf-tab})
+  zstyle ':completion:*' menu select
+else
+  zstyle ':completion:*' menu no
+fi
+
 # enable syntax highligting only when opening new window to prevent crashing
 if [[ $ZSH_EVAL_CONTEXT == 'file' ]]; then
 source "$ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -122,9 +130,4 @@ export EDITOR="nvim"
 
 eval "$(atuin init zsh)"
 
-autoload -U compinit; compinit
-source ~/.oh-my-zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
-
 eval "$(zoxide init zsh)"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

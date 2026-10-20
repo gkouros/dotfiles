@@ -23,3 +23,10 @@ do
 	echo "\033[0;32mInstalling $program\033[0m"
 	sudo apt-get install $program -y
 done
+
+# smarter shell history with atuin
+curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+
+# smarter cd with zoxide
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+

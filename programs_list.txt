@@ -1,4 +1,5 @@
 htop
+curl
 terminator
 {gnome,unity}-tweak-tool
 gitk
