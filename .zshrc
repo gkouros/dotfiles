@@ -119,10 +119,12 @@ compctl -K _pip_completion pip3
 bindkey  "^[[1~"   beginning-of-line
 bindkey  "^[[4~"   end-of-line
 # set fn + arrow keys for home, end, prior, next
-xmodmap -e "keycode 173 = Home"
-xmodmap -e "keycode 171 = End"
-xmodmap -e "keycode 174 = Prior"
-xmodmap -e "keycode 172 = Next"
+if [ -n "${DISPLAY+x}" ]; then
+	xmodmap -e "keycode 173 = Home"
+	xmodmap -e "keycode 171 = End"
+	xmodmap -e "keycode 174 = Prior"
+	xmodmap -e "keycode 172 = Next"
+fi
 
 export EDITOR="nvim"
 
