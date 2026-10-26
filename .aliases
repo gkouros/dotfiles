@@ -1,4 +1,5 @@
-alias xo="xdg-open"
+# quick ssh commands
+alias ati="ssh gkouros@atilab"
 
 # package management
 alias install='sudo apt install'
@@ -8,6 +9,7 @@ alias upgrade='sudo apt upgrade'
 alias dist-upgrade='sudo apt dist-upgrade'
 alias full-upgrade='sudo apt do-release-upgrade'
 alias apt-search='sudo aptitude search'
+alias xo="xdg-open"
 
 # frequently used folders
 alias ~='cd ~'
