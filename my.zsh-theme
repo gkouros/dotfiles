@@ -37,6 +37,13 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[yellow]%}%{● %G%}"
 ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{ %G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔ %G%}"
 
-PROMPT="%{$fg[yellow]%}╭─${user_host} ${current_dir} ${rvm_ruby} ${git_branch}
+function prompt_conda_env() {
+  if [[ -n ${CONDA_DEFAULT_ENV:-} ]]; then
+    # Escape prompt expansion characters in environment names.
+    print -rn -- " (${CONDA_DEFAULT_ENV//\%/%%})"
+  fi
+}
+
+PROMPT="%{$fg[yellow]%}╭─${user_host} ${current_dir}"'$(prompt_conda_env)'" ${rvm_ruby} ${git_branch}
 %{$fg[yellow]%}╰─%{$reset_colors%}%B${user_symbol}%b "
 RPS1=""
